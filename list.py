@@ -1,4 +1,116 @@
 """
+struct Node{
+	int val
+	Node next = null
+}
+
+Node two = new Node(2)
+
+class Node:
+	def __init__(self, val):
+		self.val = val
+		self.next = None
+
+
+two = Node(2)
+three = Node(3)
+two1 = Node(2)
+
+head = two
+two.next = three 
+three.next = two1
+
+def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+
+        def print_list(head):
+            l = []
+            curr = head 
+            while curr:
+                l.append(str(curr.val))
+                curr=curr.next
+
+            return "->".join(l)
+
+        while head and head.val == val:
+            head = head.next
+
+        curr = head 
+        while curr and curr.next:
+            if curr.next.val == val:
+                curr.next = curr.next.next
+            curr = curr.next
+        #print(print_list(head))
+        return head
+
+def delete_val(val):
+	#&p
+	if not head.next and head.val == val:
+		head = null
+
+	if head.next and head.val == val:
+		tmp = head.next
+		head.next = None
+		head = tmp
+
+	 while head and head.val == val:
+            head = head.next
+
+	curr = head 
+	while curr and curr.next:
+		if curr.next.val == val:
+			curr.next = curr.next.next
+		else 
+			curr = curr.next
+#malloc()
+
+#free()
+
+#def print_list2()
+"""
+"""
+2
+
+1-3-2
+  c
+2-2-2-2
+
+
+
+1-3-2-4-4
+        c
+
+
+n = 2
+1->2-3-4-5-7-8-9-3
+1->3
+                 c
+
+
+2
+
+if head ==
+head == n
+head = null
+
+2-3
+
+if head == 2 and head.next != 2 
+ head = head
+
+2-3-2
+
+2-2-2-2-2
+
+
+          
+
+->2-3-4-5-7-8-9-3
+
+
+delete all nodes with val 2 
+
+
+
 Hello
 
 Swap kth node from end of singly linked list with head
@@ -104,6 +216,7 @@ def kth_from_end(k):
 	initialK = k
 	curr = head
 	pointer_k = head
+	prev = None
 	while k:
 		if not pointer_k:
 			raise ValueError(f"k={initialK} is larger than list")
@@ -111,12 +224,13 @@ def kth_from_end(k):
 		k-=1
 	#print(f"pointer_k.val: {pointer_k.val}")
 	while pointer_k:
+		prev = curr 
 		curr = curr.next
 		pointer_k = pointer_k.next
 
 	#print(f"curr.val: {curr.val}")
 
-	return curr
+	return prev
 
 
 """
@@ -142,6 +256,11 @@ h
 h   
 
 4->2->3->1->5
+   t
+1->2->3->4->5
+h      p  k
+4->2->3->1->5
+h
 """
 def get_k_1(head, kth):
 	curr = head
@@ -153,8 +272,10 @@ def get_k_1(head, kth):
 
 def swap_kth_node_from_end_with_head(head, k):
 	#print(print_list(head))
-	kth = kth_from_end(k)
-	prev_kth = get_k_1(head, kth)
+	#kth = kth_from_end(k)
+	#prev_kth = get_k_1(head, kth)
+	prev_kth = kth_from_end(k)
+	kth = prev_kth.next
 	temp_head_next = head.next
 	head.next = kth.next
 	prev_kth.next = head
@@ -165,14 +286,21 @@ def swap_kth_node_from_end_with_head(head, k):
 	return head
 
 assert print_list(head) == "1->2->3->4->5"
-assert kth_from_end(2).val == 4
-assert kth_from_end(1).val == 5
-assert get_k_1(head, kth_from_end(2)).val == 3
+assert kth_from_end(2).val == 3
+assert kth_from_end(1).val == 4
+assert get_k_1(head, kth_from_end(2)).val == 2
 newhead=swap_kth_node_from_end_with_head(head, 2)
 							
 assert print_list(newhead) == "4->2->3->1->5"
 
 print("All assertions passed.")
+
+
+
+
+
+
+
 
 
 
