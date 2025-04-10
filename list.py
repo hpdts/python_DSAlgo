@@ -157,7 +157,7 @@ Swap the node
 
 
 
-
+just code
 Encode: [USA, USA, USA, Mexico, Canada, Mexico, Mexico]
 Result: [USA, Mexico, Canada, 0,0,0,1,2,1,1]
 
@@ -211,12 +211,28 @@ def print_list(head):
 		result.append(f"{curr.val}")
 		curr = curr.next
 	return "->".join(result)
+"""
+
+k=2
+123456178
+   ^
+  i
+ 
+k=2
+
+
+
+"""
 
 def kth_from_end(k):
 	initialK = k
 	curr = head
 	pointer_k = head
 	prev = None
+	#k=2
+	#1-2-3-4
+	#      pk
+	#    i
 	while k:
 		if not pointer_k:
 			raise ValueError(f"k={initialK} is larger than list")
