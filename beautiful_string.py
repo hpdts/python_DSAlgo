@@ -108,6 +108,54 @@ print("all assertions passed")
 
 
 
+"""
+HackerRank Problem: Beautiful String
+1. Beautiful String
+A string is beautiful if no two adjacent characters are either
+1. the same, for example 'aa'.
+2. adjacent in the alphabet, for example 'ef'.
+The following operations can be performed on a string, s.
+·
+Choose any index i (0 ≤ i< |s|) and change s[i] to any lowercase English letter.
+Find the minimum number of operations required to make the string beautiful.
+Example
+s="abdde"
+String s is not beautiful because:
+• 'dd' violates constraint 1, no two adjacent characters are the same.
+• 'ab' and 'de' violate constraint 2, no two adjacent characters are adjacent in the alphabet.
+The string can be converted into a beautiful string after 2 operations. One solution is below.
+• Choose 1 and change s[i] to 'z'. s becomes "azdde".
+• Choose -3 and change s[i] to 'k'. s becomes "azdke" which is beautiful.
+Note: There are many other solutions such as "ardze", "axdke", etc.
+It can be shown that 2 is the minimum number of operations required so return 2.
+Function Description
+Complete the function getMinimum OperationCount in the editor below.
+getMinimumOperationCount has the following parameter:
+s: a string
+Returns
+int: the minimum number of operations required to make s beautiful
+"""
+
+def getMinimumOperationCount(s: str) -> int:
+    operations = 0
+    n = len(s)
+
+    for i in range(1, n):
+        prev = s[i - 1]
+        curr = s[i]
+
+        # Check for same character or consecutive in alphabet
+        if curr == prev or abs(ord(curr) - ord(prev)) == 1:
+            operations += 1
+            # Simulate a change: skip the current character in future comparisons
+            # by setting it to a dummy value that won't match next char
+            s = s[:i] + '#' + s[i+1:]
+
+    return operations
+
+assert getMinimumOperationCount("abdde") == 2
+assert getMinimumOperationCount("bcbb") == 2
+print("all assertions passed 2")
 
 
 
