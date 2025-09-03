@@ -58,6 +58,3 @@ def fizzbuzz_func(n):
         for i in range(1, n +1)
     ))
 fizzbuzz_func(12)
-
-def fizz_buzz_generator(n)
-    def 
