@@ -30,7 +30,7 @@ t
  3-> 2->1
   <-  <-
 """
-
+"""
 class Node:
     def __init__(self, val):
         self.val = val  # An instance attribute
@@ -112,6 +112,7 @@ lru.put(4, 4)
 lru.print()
 
 """
+"""
 {} ->[] 
 
 1->2->3
@@ -152,4 +153,82 @@ get(1) go to dict and get Node.val
 h. t
 put(3,3)
 
+h    <-ta
+ \\>      <//t
+  <-n->
+
 """
+
+class LRUCache:
+
+    class Node:
+        def __init__(self, key, value):
+            self.key = key
+            self.val = value
+            self.prev = None
+            self.next = None
+
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.head = self.Node(-1,-1)
+        self.tail = self.Node(-1,-1)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.m = {}
+
+
+    def addNode(self, new_node):
+        tmp = self.head.next
+        new_node.next = tmp
+        new_node.prev = self.head
+        self.head.next = new_node
+        tmp.prev = new_node
+
+    def deleteNode(self, del_node):
+        prev_prev = del_node.prev
+        next_next = del_node.next
+        prev_prev.next = next_next
+        next_next.prev = prev_prev
+
+
+    def get(self, key:int) -> int:
+        if key in self.m:
+            found_node = self.m[key]
+            ans = found_node.val
+            del self.m[key]
+            self.deleteNode(found_node)
+            self.addNode(found_node)
+            self.m[key] = self.head.next
+            return ans
+
+        return -1
+
+    def put(self, key:int, value:int) -> None:
+        if key in self.m:
+            curr = self.m[key]
+            del self.m[key]
+            self.deleteNode(curr)
+
+        if len(self.m) == self.cap:
+            del self.m[self.tail.prev.key]
+            self.deleteNode(self.tail.prev)
+
+        self.addNode(self.Node(key, value))
+        self.m[key] = self.head.next
+#["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+#[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+
+lru = LRUCache(2)
+lru.put(1,1)
+lru.put(2,2)
+print(lru.get(1))
+lru.put(3,3)
+print(lru.get(2))
+lru.put(4,4)
+print(lru.get(1))
+print(lru.get(3))
+print(lru.get(4))
+
+
+
+
