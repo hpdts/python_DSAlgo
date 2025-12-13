@@ -8,7 +8,7 @@ def reverse_number_ori(num):
   reverse = num[::-1]
   # Return the number
   return reverse
-#print(reverse_number_ori(1223)) # Output: 3221
+print(reverse_number_ori(1223)) # Output: 3221
 #print(reverse_number_ori(987654321)) # Output: 123456789
 
 def reverse_number(num):

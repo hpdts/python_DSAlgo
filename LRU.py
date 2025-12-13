@@ -215,6 +215,7 @@ class LRUCache:
 
         self.addNode(self.Node(key, value))
         self.m[key] = self.head.next
+        
 #["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
 #[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
 

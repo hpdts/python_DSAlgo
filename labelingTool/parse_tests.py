@@ -64,8 +64,9 @@ def find_report_file(folder: str) -> str | None:
             return os.path.join(folder, fname)
     return None
 
-task_number = "139988"
-folder_path = f"/Users/franciscohernandez/Documents/Fco2024-25/turing/python/{task_number}/"
+task_number = "159266"
+folder_path = f"/Users/franciscohernandez/Documents/Fco2024-25/turing/c#/tasks/{task_number}/"
+#folder_path = f"/Users/franciscohernandez/Documents/Fco2024-25/turing/python/{task_number}/"
 json_file = find_json_file(folder_path, "_p2p")
 after_file = find_log_file(folder_path, "_after")
 before_file = find_log_file(folder_path, "_before")
